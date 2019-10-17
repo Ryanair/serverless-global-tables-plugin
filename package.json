@@ -1,0 +1,26 @@
+{
+  "name": "serverless-global-tables-plugin",
+  "version": "1.0.0",
+  "description": "A serverless plugin to generate dynamodb global tables",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "repository": "https://github.com/Ryanair/serverless-global-tables-plugin.git",
+  "author": "Fabrizio Fortunato <fortune@cortesconta.net>",
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "rimraf dist/",
+    "build": "webpack"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.552.0",
+    "chalk": "^2.4.2",
+    "ramda": "^0.26.1",
+    "rimraf": "^3.0.0"
+  },
+  "devDependencies": {
+    "ts-loader": "^6.2.0",
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
+  }
+}
