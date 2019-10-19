@@ -9,42 +9,46 @@ export class CreateDynamoDBGlobalTables {
   initialRegion: any;
   hooks: any;
 
-  constructor(serverless, options) {
+  constructor(serverless: any, options: any) {
     this.serverless = serverless;
     this.options = options;
     this.tableRegions = pathOr([], ['service', 'custom', 'globalTable', 'regions'], serverless);
     this.initialRegion = this.serverless.service.provider.region;
     this.hooks = {
       'after:aws:deploy:deploy:updateStack': this.createGlobalTables.bind(this),
+      'remove:remove': this.deleteGlobalTables.bind(this)
     };
   }
 
   async createGlobalTables() {
-    const provider = this.serverless.getProvider('aws');
-    const region = provider.getRegion();
     const tableName = this.getTableName();
     const table = this.getTable();
 
     table.Properties.StreamSpecification.StreamEnabled = true;
 
-    await Promise.all(this.tableRegions.map(t => this.createTable(table, t)));
+    await Promise.all(this.tableRegions.map((t: string) => this.createTable(table, t)));
     await this.createGlobalTable(tableName);
+  }
+
+  async deleteGlobalTables() {
+    const tableName = this.getTableName();
+    await Promise.all(this.tableRegions.map((t: string) => this.deleteTable(tableName, t)));
   }
 
   getTable() {
     return values(this.serverless.service.resources.Resources)
-      .filter(r => r.Type === 'AWS::DynamoDB::Table')[0];
+      .filter((r: any) => r.Type === 'AWS::DynamoDB::Table')[0];
   }
 
   getTableName() {
     const tableNames = values(this.serverless.service.resources.Resources)
-      .filter(r => r.Type === 'AWS::DynamoDB::Table')
-      .map(r => r.Properties.TableName)[0]
+      .filter((r: any) => r.Type === 'AWS::DynamoDB::Table')
+      .map((r: any) => r.Properties.TableName)[0]
 
     return tableNames;
   }
 
-  async createTable(tableTemplate, region) {
+  async createTable(tableTemplate: any, region: string) {
     this.log(`Creating table named: ${chalk.yellow(tableTemplate.Properties.TableName)} in ${chalk.yellow(region)}`);
     const dynamo = new AWS.DynamoDB({ region });
     try {
@@ -59,7 +63,17 @@ export class CreateDynamoDBGlobalTables {
     }
   }
 
-  async createGlobalTable(tableName) {
+  async deleteTable(tableName: string, region: string) {
+    const dynamo = new AWS.DynamoDB({ region });
+    try {
+      await dynamo.deleteTable({ TableName: tableName }).promise();
+      this.log(`Delete Table ${tableName} in ${region}`);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async createGlobalTable(tableName: string) {
     this.log(`Creating global table for: ${chalk.yellow(tableName)}`);
     const dynamo = new AWS.DynamoDB({ region: this.initialRegion });
     const params = {
@@ -84,7 +98,7 @@ export class CreateDynamoDBGlobalTables {
     }
   }
 
-  log(message) {
+  log(message: string) {
     this.serverless.cli.consoleLog(`DynamoDB Global Tables: ${chalk.yellow(message)}`);
   }
 }

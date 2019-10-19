@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@types/ramda@^0.26.33":
+  version "0.26.33"
+  resolved "http://repo.ryanair.com:8081/artifactory/api/npm/ryanair-npm/@types/ramda/-/ramda-0.26.33.tgz#5fd1f22381ccf913a3627beb16f468fb57f82d94"
+  integrity sha1-X9HyI4HM+ROjYnvrFvRo+1f4LZQ=
+  dependencies:
+    ts-toolbelt "^4.7.7"
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"
@@ -2770,6 +2777,11 @@ ts-loader@^6.2.0:
     loader-utils "^1.0.2"
     micromatch "^4.0.0"
     semver "^6.0.0"
+
+ts-toolbelt@^4.7.7:
+  version "4.8.20"
+  resolved "http://repo.ryanair.com:8081/artifactory/api/npm/ryanair-npm/ts-toolbelt/-/ts-toolbelt-4.8.20.tgz#0813ac0c4e443dc3cfd64d97fe4bfd203ae38c92"
+  integrity sha1-CBOsDE5EPcPP1k2X/kv9IDrjjJI=
 
 tslib@^1.9.0:
   version "1.10.0"
