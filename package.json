@@ -4,7 +4,10 @@
   "description": "A serverless plugin to generate dynamodb global tables",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "repository": "https://github.com/Ryanair/serverless-global-tables-plugin.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ryanair/serverless-global-tables-plugin.git"
+  },
   "author": "Fabrizio Fortunato <fortune@cortesconta.net>",
   "license": "MIT",
   "scripts": {
@@ -22,5 +25,9 @@
     "typescript": "^3.6.4",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/Ryanair/serverless-global-tables-plugin/issues"
+  },
+  "homepage": "https://github.com/Ryanair/serverless-global-tables-plugin#readme"
 }
