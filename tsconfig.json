@@ -1,4 +1,5 @@
 {
+  "extends": "./node_modules/tslint-config-ryanair/tsconfig.json",
   "compilerOptions": {
     "declaration": true,
     "module": "commonjs",
@@ -11,8 +12,5 @@
   },
   "include": [
     "src/**/*"
-  ],
-  {
-    "extends": "./node_modules/tslint-config-ryanair/tsconfig.json"
-  }
+  ]
 }
