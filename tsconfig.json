@@ -11,5 +11,8 @@
   },
   "include": [
     "src/**/*"
-  ]
+  ],
+  {
+    "extends": "./node_modules/tslint-config-ryanair/tsconfig.json"
+  }
 }
