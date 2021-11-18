@@ -15,7 +15,7 @@
     "build": "webpack"
   },
   "dependencies": {
-    "aws-sdk": "^2.552.0",
+    "aws-sdk": "^2.1030.0",
     "chalk": "^2.4.2",
     "ramda": "^0.26.1",
     "rimraf": "^3.0.0"
